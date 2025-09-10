@@ -1,4 +1,4 @@
-Absolutely, Siddharth — this is going to be a **production-grade, zero-retry, mission-critical IoT edge system** built in Rust, designed for deployment across thousands of trucks. We’re not prototyping — we’re engineering for **durability, safety, scale, and maintainability**.
+ **production-grade, zero-retry, mission-critical IoT edge system** built in Rust, designed for deployment across thousands of trucks. engineered for **durability, safety, scale, and maintainability**.
 
 Let’s break this into **10 Core Modules** — each with:
 
