@@ -1,0 +1,369 @@
+[package]
+name = "iot-truck-agent"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Config
+config = "0.13"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+
+# Async + Filesystem
+tokio = { version = "1.3", features = ["full"] }
+notify = "6.1"             # Filesystem events for hot reload
+tower = "0.4"              # Watch + debounce
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+metrics = "0.21"
+metrics-exporter-prometheus = "0.12" # Optional for metrics endpoint
+
+# Error Handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Utilities
+once_cell = "1.19"         # For global config
+parking_lot = "0.12"       # RwLock for config reload
+
+
+# Serial (UART) for GPS/OBD
+tokio-serial = "7.0"
+nmea = "0.6"                  # GPS parser
+
+# I2C for IMU
+linux-embedded-hal = "0.3"
+embedded-hal = "1.0"
+lis3dh = "0.7"                # Example IMU driver (accelerometer)
+
+# CAN bus (for TPMS, future)
+socketcan = { version = "2.0", features = ["tokio"] }
+
+# Time + utilities
+chrono = { version = "0.4", features = ["serde"] }
+futures-util = "0.3"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+metrics = "0.21"
+parking_lot = "0.12"
+
+v4l = "0.4"
+v4l-sys = "0.3"
+
+# GStreamer for RTSP/IP cameras (optional)
+gstreamer = "0.21"
+gstreamer-app = "0.21"
+gstreamer-video = "0.21"
+
+# Image processing
+image = "0.24"
+jpeg-encoder = "0.4"
+rtp-types = "0.8"           # For RTP timestamp sync (future)
+
+# Frame buffer + ring buffer
+bytes = "1.5"
+ringbuf = "0.3"
+
+# Time + utils
+chrono = { version = "0.4", features = ["serde"] }
+tokio = { version = "1.3", features = ["full"] }
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+
+#wal
+# Embedded, crash-safe storage
+sled = "0.34"                 # Our WAL engine — atomic, async-friendly
+
+# Serialization
+bincode = "1.3"
+serde = { version = "1.0", features = ["derive"] }
+
+# Compression
+zstd = "0.12"
+flate2 = "1.0"
+
+# Filesystem + utils
+tokio = { version = "1.3", features = ["fs", "time"] }
+bytes = "1.5"
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+
+
+# MQTT Client
+rumqttc = "0.23"
+tokio-rustls = "0.24"        # For TLS
+rustls-pemfile = "1.0"
+webpki-roots = "0.25"
+
+# HTTP Fallback
+reqwest = { version = "0.11", features = ["json", "stream"] }
+serde_json = "1.0"
+
+# Compression
+zstd = "0.12"
+flate2 = "1.0"
+
+# Time + utils
+tokio = { version = "1.3", features = ["time", "rt-multi-thread"] }
+tokio-stream = "0.1"
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+base64 = "0.21"
+
+
+# ONNX Runtime - Pure Rust
+tract-onnx = "0.21"           # Lightweight, no Python, CPU only
+tract-core = "0.21"
+
+# OR for GPU support (Jetson) - uncomment if needed
+# candle-core = "0.3"         # PyTorch-like, CUDA support
+# candle-onnx = "0.3"
+
+# Image preprocessing
+image = "0.24"
+ndarray = "0.15"
+
+# Tensor operations
+tract-linalg = "0.21"
+
+# Time + utils
+tokio = { version = "1.3", features = ["time"] }
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# System monitoring
+sysinfo = "0.29"
+tokio-metrics = "0.4"         # Task monitoring
+
+# GPIO for alerts (Raspberry Pi)
+rppal = "0.14"                # GPIO, I2C, SPI
+
+# Time + utils
+tokio = { version = "1.3", features = ["time", "rt-multi-thread"] }
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hostname = "0.3"
+local-ip = "0.1"
+
+
+# System
+sysinfo = "0.29"
+tokio-metrics = "0.4"
+futures-timer = "3.0"
+
+# Network
+tokio = { version = "1.3", features = ["net", "time", "rt-multi-thread"] }
+rumqttc = "0.23"              # For MQTT health checks
+reqwest = "0.11"              # For HTTP health checks
+
+# Hardware
+rppal = "0.14"                # GPIO, I2C
+nvml-wrapper = "0.9"          # Optional: NVIDIA GPU monitoring (Jetson)
+
+# Storage
+sled = "0.34"                 # For persistent health history
+
+# Time + utils
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hostname = "0.3"
+local-ip = "0.1"
+
+[dependencies]
+# ONNX Runtime - Pure Rust (CPU)
+tract-onnx = "0.21"
+tract-core = "0.21"
+
+# OR for GPU support (Jetson) - feature-gated
+candle-core = { version = "0.3", optional = true }
+candle-onnx = { version = "0.3", optional = true }
+candle-nn = { version = "0.3", optional = true }
+
+# OpenVINO (Intel) - future
+# openvino-rs = { version = "0.1", optional = true }
+
+# Image preprocessing - zero-copy
+image = "0.24"
+bytemuck = "1.14"                 # Zero-copy casting
+
+# Tensor operations
+ndarray = "0.15"
+
+# Security
+ring = "0.17"                     # Signature verification
+base64 = "0.21"
+
+# Time + utils
+tokio = { version = "1.3", features = ["time"] }
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+cuda = ["candle-core", "candle-onnx", "candle-nn"]
+openvino = [] # future
+blake3 = "1.5"
+hex = "0.4"
+
+
+# MQTT 5.0 Client
+rumqttc = "0.23"
+tokio-rustls = "0.24"
+rustls-pemfile = "1.0"
+webpki-roots = "0.25"
+
+# HTTP/3 Fallback
+reqwest = { version = "0.11", features = ["json", "http3", "stream"] }
+h3 = { version = "0.0.6", optional = true } # HTTP/3
+
+# Compression
+zstd = "0.12"
+flate2 = "1.0"
+
+# Time + utils
+tokio = { version = "1.3", features = ["time", "rt-multi-thread", "net"] }
+tokio-stream = "0.1"
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bytes = "1.5"
+
+# Security
+jsonwebtoken = "8.3"           # JWT token refresh
+ring = "0.17"                 # Crypto for payload encryption
+
+[features]
+http3 = ["h3"]
+encryption = []               # Payload encryption
+
+# Embedded, crash-safe storage
+sled = "0.34"
+redb = "1.3"                  # Alternative: simpler, faster for some use cases
+
+# Compression
+zstd = "0.12"
+flate2 = "1.0"
+
+# Encryption
+ring = "0.17"
+aes-gcm = "0.10"
+
+# Time + utils
+tokio = { version = "1.3", features = ["fs", "time", "sync"] }
+bytes = "1.5"
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.4", features = ["derive"] } # for CLI
+
+# Health integration
+once_cell = "1.19"
+
+
+[dependencies]
+# HTTP Client
+reqwest = { version = "0.11", features = ["json", "stream"] }
+tokio = { version = "1.3", features = ["fs", "time", "sync"] }
+
+# Security
+ring = "0.17"
+jsonwebtoken = "8.3"
+sha2 = "0.10"
+
+# Compression
+zstd = "0.12"
+flate2 = "1.0"
+
+# Time + utils
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tempfile = "3.8"
+
+
+# GPIO
+rppal = "0.14"
+
+# CAN bus
+socketcan = { version = "2.0", features = ["tokio"] }
+
+# Display
+ssd1306 = "0.8"               # OLED displays
+embedded-graphics = "0.8"
+
+# Time + utils
+tokio = { version = "1.3", features = ["time", "sync"] }
+futures-util = "0.3"
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# System
+tokio = { version = "1.3", features = ["full", "signal"] }
+nix = "0.27"                  # For signal handling
+backtrace = "0.3"             # For panic backtraces
+
+# Time + utils
+tracing = "0.1"
+metrics = "0.21"
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hostname = "0.3"
+# Health monitoring
+tokio-metrics = "0.4"

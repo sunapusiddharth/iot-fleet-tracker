@@ -1,0 +1,64 @@
+[package]
+name = "truck-central-server"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.3", features = ["full", "macros"] }
+tokio-stream = "0.1"
+
+# Web framework
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["full"] }
+hyper = "0.14"
+
+# Database
+mongodb = "2.8"
+redis = { version = "0.23", features = ["tokio-comp"] }
+influxdb2 = "0.6"
+rusoto_core = "0.48"
+rusoto_s3 = "0.48"
+
+# Message queue
+rdkafka = { version = "0.35", features = ["tokio-runtime"] }
+rumqttc = "0.23"
+
+# Real-time
+tokio-tungstenite = "0.20"
+warp = "0.3"
+
+# Authentication
+jsonwebtoken = "8.3"
+bcrypt = "0.15"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.6", features = ["v4"] }
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+time = "0.3"
+
+# Validation
+validator = { version = "0.16", features = ["derive"] }
+
+# Tracing and metrics
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+metrics = "0.21"
+metrics-exporter-prometheus = "0.12"
+
+# Utilities
+thiserror = "1.0"
+anyhow = "1.0"
+parking_lot = "0.12"
+once_cell = "1.19"
+clap = { version = "4.4", features = ["derive"] }
+
+# Geospatial
+geo = "0.26"
+geohash = "0.13"
+toml = "0.8"

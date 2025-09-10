@@ -1,0 +1,96 @@
+device_id = "TRK-7A3B9C"
+log_level = "info"
+enable_hot_reload = true
+
+[mqtt]
+broker_url = "ssl://mqtt.yourcompany.com:8883"
+client_id = "truck-agent-7A3B9C"
+topic_prefix = "fleet/truck"
+qos = 1
+keep_alive = 60
+
+[sensors]
+gps_device = "/dev/ttyUSB0"
+obd_device = "/dev/ttyUSB1"
+imu_device = "/dev/i2c-1"
+sample_rate_hz = 10
+
+[camera]
+devices = ["/dev/video0", "/dev/video1"]
+resolution = "1280x720"
+fps = 15
+encode_quality = 85
+
+[storage]
+wal_path = "/var/lib/truck-agent/wal"
+max_wal_size_mb = 1024
+checkpoint_interval_sec = 300
+
+[alerts]
+enable_local_alerts = true
+gpio_buzzer_pin = 18
+alert_debounce_sec = 10
+
+
+
+[ml_edge]
+enable = true
+model_dir = "./models"
+max_concurrent_inferences = 2
+throttle_ms = 50             # Min delay between inferences
+enable_drowsiness = true
+enable_lane_departure = true
+enable_cargo_tamper = true
+enable_license_plate = false # Heavy — disable on Pi
+
+[drowsiness]
+model_file = "drowsiness.onnx"
+threshold = 0.85
+input_width = 224
+input_height = 224
+roi_x = 0.3                  # Region of Interest: driver's face
+roi_y = 0.2
+roi_width = 0.4
+roi_height = 0.3
+
+[lane_departure]
+model_file = "lane_departure.onnx"
+threshold = 0.7
+input_width = 320
+input_height = 180
+max_deviation_pixels = 50
+
+[cargo_tamper]
+model_file = "cargo_tamper.onnx"
+threshold = 0.8
+input_width = 416
+input_height = 416
+sensitivity = 0.5            # Motion sensitivity 0.0-1.0
+
+[license_plate]
+model_file = "license_plate.onnx"
+threshold = 0.6
+input_width = 320
+input_height = 240
+
+
+[health]
+enable = true
+interval_ms = 5000           # Check every 5 seconds
+enable_alerts = true
+alert_pin = 18               # GPIO pin for buzzer/LED
+
+[health.thresholds]
+cpu_critical_percent = 95
+cpu_warning_percent = 85
+memory_critical_percent = 90
+memory_warning_percent = 80
+disk_critical_percent = 95
+disk_warning_percent = 90
+temp_critical_c = 80
+temp_warning_c = 70
+
+[health.degradation]
+enable_auto_degrade = true
+cpu_degrade_threshold = 80   # Start degrading at 80% CPU
+camera_fps_degrade_step = 5  # Reduce FPS by 5 when degrading

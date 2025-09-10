@@ -1,0 +1,41 @@
+[server]
+bind_address = "0.0.0.0"
+http_port = 8080
+websocket_port = 8081
+metrics_port = 9092
+max_connections = 10000
+request_timeout_sec = 30
+
+[database]
+mongodb_uri = "mongodb://localhost:27017"
+mongodb_database = "truck_iot"
+redis_uri = "redis://localhost:6379"
+influxdb_url = "http://localhost:8086"
+influxdb_org = "truck_iot"
+influxdb_bucket = "telemetry"
+influxdb_token = "your-influxdb-token"
+
+[message_queue]
+kafka_brokers = ["localhost:9092"]
+kafka_topic = "truck-telemetry"
+mqtt_broker = "mqtt://localhost:1883"
+mqtt_username = "truck-user"
+mqtt_password = "truck-password"
+
+[storage]
+s3_endpoint = "http://localhost:9000"
+s3_region = "us-east-1"
+s3_bucket = "truck-iot"
+s3_access_key = "your-access-key"
+s3_secret_key = "your-secret-key"
+
+[auth]
+jwt_secret = "your-jwt-secret-key-change-in-production"
+jwt_expiry_hours = 24
+admin_username = "admin"
+admin_password_hash = "$2y$12$K0bytJX9X3v7X5X5X5X5X.OGdGdGdGdGdGdGdGdGdGdGdGdGdG"
+
+[telemetry]
+enable_tracing = true
+enable_metrics = true
+log_level = "info"

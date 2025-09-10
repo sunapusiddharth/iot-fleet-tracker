@@ -1,0 +1,84 @@
+[server]
+bind_address = "0.0.0.0"
+metrics_port = 9091
+mqtt_port = 1883
+http_port = 8080
+websocket_port = 8081
+
+[simulation]
+num_trucks = 10
+update_interval_ms = 1000
+enable_mqtt = true
+enable_http = true
+enable_websocket = true
+base_latitude = 37.7749
+base_longitude = -122.4194
+route_radius_km = 10.0
+
+[[scenarios]]
+name = "normal_driving"
+description = "Normal driving conditions"
+probability = 0.6
+duration_minutes = 10
+parameters = {}
+
+[[scenarios]]
+name = "emergency_braking"
+description = "Emergency braking scenario"
+probability = 0.1
+duration_minutes = 1
+parameters = {}
+
+[[scenarios]]
+name = "rapid_acceleration"
+description = "Rapid acceleration scenario"
+probability = 0.1
+duration_minutes = 1
+parameters = {}
+
+[[scenarios]]
+name = "sharp_turn"
+description = "Sharp turn scenario"
+probability = 0.1
+duration_minutes = 1
+parameters = {}
+
+[[scenarios]]
+name = "system_failure"
+description = "System failure scenario"
+probability = 0.05
+duration_minutes = 5
+parameters = {}
+
+[[scenarios]]
+name = "maintenance"
+description = "Maintenance scenario"
+probability = 0.05
+duration_minutes = 30
+parameters = {}
+
+[[trucks]]
+id = "TRK-0001"
+model = "Model-X"
+initial_latitude = 37.7749
+initial_longitude = -122.4194
+initial_speed = 60.0
+
+[trucks.sensor_config]
+gps_update_rate_hz = 10
+obd_update_rate_hz = 10
+imu_update_rate_hz = 100
+tpms_update_rate_hz = 1
+
+[trucks.camera_config]
+front_camera = true
+driver_camera = true
+cargo_camera = true
+resolution = "1280x720"
+fps = 15
+
+[trucks.ml_config]
+drowsiness_detection = true
+lane_departure_detection = true
+cargo_tamper_detection = true
+license_plate_detection = false
